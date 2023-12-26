@@ -1,0 +1,738 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+struct Tickets
+//        username=user    password=code
+{
+	char name[100];
+	char contact[20];
+	char status[100];
+	char email[100];
+	char gender[100];
+	char departurecity[100];
+	char Arrival_city[100];
+	int age;
+};
+struct bus
+{
+	char bus[100];
+	int bus_num;
+	char driver_name[100];
+	int total_seats;
+	int seats_avail;
+	int seats_reser;
+    char dep_time[100];
+    char arr_time[100];
+    char dep_city[100];
+    char arr_city[100];
+    int bus_rent;
+    int rent_per_seat;
+    int tot_pass;
+
+	
+};
+struct login{
+	char uname[10]; 
+    char pword[10];
+	};
+
+struct feedback{
+	char name[100];
+	char route_from[100];
+	char route_to[100];
+	char mobile[100];
+
+};
+
+void  display_in_detail(Tickets[],int);     //[1]
+void  searchbyname(Tickets[],int);			//[2]
+void  searchbyseat(Tickets[],int);			//[3]
+void sortbyname(Tickets[],int);				//[4]
+void sortbyage(Tickets[],int);              //[5]
+void booking(Tickets[],bus[]);			    //[6]
+void view_bus_list(bus[],int);				//[7]
+void login_sys(login[]);					//[8]
+void cancel_seat(Tickets[],int);			//[9]
+void edit_data(Tickets[],int);			    //[10]
+void  display(Tickets[],int);		        //[11]
+void timetable(bus[],int);				   //[12]
+void Rent_whole_Bus(bus[],int);				//[13]
+void feedback_from_pass(feedback[]);		//[14]
+void rent_per_seat(bus[],int);				//[15]
+int main()
+{
+	Tickets t[32]={
+	 
+		{"Arfah", "045235556641", "single", "Arfah@gmail.com",  "Female","Islamabad","Peshawar",21},
+		{"Sofia", "045655566491", "single", "Sofia@gmail.com",  "Female","Peshawar", "Lahore",  20},
+		{"Alian", "036325556641", "single", "Alian@gmail.com",  "Female","Lahore",   "Peshawar",22},
+		{"Asma",  "056236666641", "single", "Asma@gmail.com",   "Female","Lahore",   "Peshawar",20},
+		{"Ali",   "033235556641", "single", "Ali@gmail.com",    "Male",  "Peshawar", "Lahore",  23},
+		{"Hamza", "009835556641", "Married","Hamza@gmail.com",  "Male",  "Islamabad","Peshawar",20},
+		{"Laiba", "033235556641", "single", "Laiba@gmail.com",  "Female","Peshawar", "Lahore",  29},
+		{"Huma",  "089035552341", "Married","Huma@gmail.com",   "Female","Islamabad","Peshawar",27},
+		{"Danyal","034565556641", "single", "Danyal,@gmail.com","Male",  "Islamabad","Peshawar",25},
+		{"Danish","035975556641", "single", "Danish@gmail.com", "Male",  "Abbotabad","Peshawar",24},	
+		{"Shamsa","015635556641", "single", "Shamsa@gmail.com", "Female","Lahore",   "Peshawar",22},
+		{"Uzair", "043232167319",  "single", "Uzair@gmail.com",  "Male",  "Peshawar", "Lahore",  28},
+		{"Alizey","02543216731",  "single", "Alizey@gmail.com", "Female","Islamabad","Abbotabad",26},
+		{"Zain",  "04563216731",  "single", "Zain@gmail.com",   "Male",  "Islamabad","Lahore",   21},
+		{"Badar", "03573216731",  "single", "Badar@gmail.com",  "Male",  "Lahore",   "Abbotabad",29},
+		{"Inayat","02543216731",  "Married","Inayat@gmail.com", "Male",  "Islamabad","Abbotabad",30},
+		{"Ishrat","02543216731",  "single", "Ishrat@gmail.com", "Female","Peshawar", "Lahore",   60},
+		{"Rehana","01233216731",  "Married","Rehana@gmail.com", "Female","Lahore",   "Abbotabad",40},
+		{"Asghar","08763216731",  "single", "Asghar@gmail.com", "Male",  "Abbotabad","Islamabad",50},
+		{"Nasir", "09543216731",  "single", "Nasir@gmail.com",  "Male",  "Abbotabad","Islamabad",42}
+};
+bus b[5]={                                                                
+            {"DAEWOO EXPRESS",207,"Captain Arshad", 32, 12,20,"10 AM","12 NOON","Abbotabad","Islamabad",10000,680},
+            {"NIAZI EXPRESS", 208,"Captain Mzhar", 32, 12,20,"1 PM", "6 PM","Islamabad","Lahore",9000,750},
+            {"KAINAT TRAVELS",209,"Captain Raza", 32, 12,20,"7 AM","12 NOON","Abbotabad","Quetta",8000,1000},
+            {"ADIL EXPRESS",  206,"Captain Owais", 32, 12,20,"4 PM","10 PM","Abbotabad","Lahore",7000,900},
+            {"GN MOVERS",     205,"Captain Zaroon", 32, 12,20,"10 AM","1 PM","Peshawar","Islamabad",6000,600}
+};
+feedback f[1];
+login l[1]={
+             "user","code"};
+             
+             	login_sys(l);
+             		int num;
+             		
+	system("cls");
+
+	do{
+	 printf("\n\n\n"); 
+	  printf("\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+    printf("\n\t\t\t############                                                   ############");
+    printf("\n\t\t\t############        BUS RESERVTION MANAGEMENT SYSTEM           ############");
+    printf("\n\t\t\t############                                                   ############");
+	  printf("\n\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+    printf("\n\t\t\t---------------------------------------------------------------------------\n");
+    printf("\n\t\t\t---------------------------------------------------------------------------");
+     printf("\n\t\t\t\t   ________________________________________");
+          printf("\n\t\t\t\t   ________________________________________\n\n");
+	printf("\t\t\t\t\t[1]=>  Tabular View Of Passengers\n");
+    printf("\t\t\t\t\t[2]=>  Detailed View Of Passengers\n");
+    printf("\t\t\t\t\t[3]=>  Reserve Tickets\n");
+    printf("\t\t\t\t\t[4]=>  Rent Buses\n");
+    printf("\t\t\t\t\t[5]=>  Sort by Name\n");
+    printf("\t\t\t\t\t[6]=>  Sort by Age\n");
+    printf("\t\t\t\t\t[7]=>  Search by Name\n");
+    printf("\t\t\t\t\t[8]=>  Search by Seat No.\n");
+    printf("\t\t\t\t\t[9]=>  Update Data\n");
+    printf("\t\t\t\t\t[10]=> Delete Data\n");
+    printf("\t\t\t\t\t[11]=> View Bus List\n");
+    printf("\t\t\t\t\t[12]=> Tickets Prices\n");
+    printf("\t\t\t\t\t[13]=> Time Table of Busses\n");
+    printf("\t\t\t\t\t[14]=> Feedback\n");
+    printf("\t\t\t\t\t[15]=> Exit\n");
+
+
+         printf("\t\t\t\t   ________________________________________");
+     printf("\n\t\t\t\t   ________________________________________\n");
+    printf("\t\t        ============================================================================\n\n");
+    printf("\t\t\t\t\t Enter Your Choice:: ");
+    scanf("%d",&num);
+    printf("\n");
+   switch(num)
+    {
+    	case 1:
+    		    display(t,20);
+    		break;
+    			case 2:
+    			display_in_detail(t,20);
+    		break;
+    			case 3:
+                booking(t,b);
+     		break;
+    			case 4:
+    	    	Rent_whole_Bus(b,5);
+    		break;
+    			case 5:
+    		    sortbyname(t,20);
+    		break;
+    			case 6:
+    	   		sortbyage(t,20);
+    		break;
+    			case 7:
+    			searchbyname(t,20);
+    		break;
+    			case 8:
+    		    searchbyseat(t,20);
+
+    		break;
+    			case 9:
+    			edit_data(t,20);
+
+    		break;
+    			case 10:
+    			cancel_seat(t,20);
+    		break;
+    			case 11:
+    			view_bus_list(b,5); 
+    		break;
+    			case 12:
+    			rent_per_seat(b,5);
+    		break;
+    		case 13:
+                timetable(b,5);
+    		break;
+    		case 14:
+                feedback_from_pass(f);
+    		break;
+    		
+    	}
+    }while(num!=15);
+	return 0;
+}
+
+void login_sys(login l[])
+{ 	system("cls");
+
+	char username[10];
+	char password[10];
+	  printf("\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+             printf("\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2                                       		\xB2\xB2\xB2\xB2\xB2");
+             printf("\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2                      LOGIN FORM           	\xB2\xB2\xB2\xB2\xB2");
+             printf("\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2                                                   \xB2\xB2\xB2\xB2\xB2");
+      printf("\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+           
+	printf(" \n\n\t                       > ENTER USERNAME:-");
+    gets(username);
+	printf(" \n\t                       > ENTER PASSWORD:-");
+    gets(password);
+	if(strcmp(username,l[0].uname)==0 && strcmp(password,l[0].pword)==0)
+	{    printf("\n\t\t\t===========================================================================\n");
+
+		printf("  \n\t\t\t\t\t       WELCOME TO THE PROGRAM\n\t\t\t\t\t       PRESENTS BY ARFAH ALI");
+		printf("\n\n\t\t\t==========================================================================\n\n");
+
+	}
+	else
+		printf("\n        SORRY !!!!  LOGIN IS UNSUCESSFUL");
+}
+void display(Tickets t[],int s)
+{ 
+system("cls");
+		  printf("\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+    printf("\n\t\t\t############                                                   ############");
+    printf("\n\t\t\t############              DISPLAY OF RESERVED SEATS            ############");
+    printf("\n\t\t\t############                                                   ############");
+    	  printf("\n\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+
+    printf("\n\t\t___________________________________________________________________________________________________");
+     printf("\n\t\t\t__________________________________________________________________________________\n");
+     printf("\n\t\t\tSEAT NO.\t NAME\t\t GENDER\t\t DEP CITY\t\tARR CITY              \n") ;
+    printf("\t\t\t___________________________________________________________________________________\n");
+
+     for(int i=0;i<s;i++)
+     {
+             printf("\n\t\t\t%d",i+1); 
+			 printf("\t\t %s",t[i].name);
+     	     printf("\t\t %s",t[i].gender);
+             printf("\t\t%s  ",t[i].departurecity);
+             printf("\t\t%s",t[i].Arrival_city);
+	 }
+     printf("\n\t\t\t__________________________________________________________________________________\n");
+    printf("\n\t\t___________________________________________________________________________________________________");
+    
+}
+void  display_in_detail(Tickets t[],int s)
+{
+	
+	system("cls");
+	  printf("\n\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+    printf("\n\t\t\t############                                                   ############");
+    printf("\n\t\t\t############         DETAILED DISPLAY OF RESERVED SEATS        ############");
+    printf("\n\t\t\t############                                                   ############");
+	  printf("\n\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb \n");
+	
+	for(int i;i<s;i++)
+	{
+             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+             printf("\n\t\t\t############                                                    ############");
+             printf("\n\t\t\t############                     SEAT NO. %d                     ############",i+1 );
+             printf("\n\t\t\t############                                                    ############");
+             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+             printf("\n\t\t\tNAME:         %s",t[i].name);
+             printf("\n\t\t\tEMAIL:        %s",t[i].email);
+             printf("\n\t\t\tDEP CITY:     %s",t[i].departurecity);
+            printf("\n\t\t\tARRI CITY:    %s",t[i].Arrival_city);
+             printf("\n\t\t\tGENDER:       %s",t[i].gender);
+            printf("\n\t\t\tSTATUS:       %s",t[i].status);
+            printf("\n\t\t\tAGE:          %d",t[i].age);
+            printf("\n\t\t\tCONTACT:      %s",t[i].contact);
+	}
+}
+void  searchbyname(Tickets t[],int s)
+{
+		system("cls");
+
+	char name[100];
+	printf("\t\t\tEnter Name for details of a passenger:");
+	fflush(stdin);
+	gets(name);
+	int flag=0;
+	             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+	for(int i=0;i<s;i++)
+	{
+	if(strcmp(name,t[i].name)==0)
+	{
+		flag=1;
+              printf("\n\t\t\tNAME:         %s",t[i].name);
+            printf("\n\t\t\tSEAT NO:      %d",i+1);
+             printf("\n\t\t\tEMAIL:        %s",t[i].email);
+             printf("\n\t\t\tDEP CITY:     %s",t[i].departurecity);
+             printf("\n\t\t\tGENDER:       %s",t[i].gender);
+            printf("\n\t\t\tSTATUS:       %s",t[i].status);
+             printf("\n\t\t\tCONTACT:      %s",t[i].contact);
+			 flag++;}
+		}
+		if(flag==0)
+		{
+			printf("\n\n\t\t\tSorry! NO passenger with this name has reserved a seat.\n");
+		}
+		else 
+	{
+			printf("\n\n\t\t\tRecord Found");}
+			             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+}
+
+void  searchbyseat(Tickets t[],int s)
+{
+		system("cls");
+
+int seat;
+	printf("\t\t\tEnter seat for details of a passenger:");
+	scanf("%d",&seat);
+	             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+		if(seat<=20)
+		{    printf("\n\t\t\tNAME:         %s",t[seat-1].name);
+            printf("\n\t\t\tSEAT NO:      %d",seat);
+             printf("\n\t\t\tEMAIL:        %s",t[seat-1].email);
+             printf("\n\t\t\tDEP CITY:     %s",t[seat-1].departurecity);
+             printf("\n\t\t\tGENDER:       %s",t[seat-1].gender);
+            printf("\n\t\t\tSTATUS:       %s",t[seat-1].status);
+             printf("\n\t\t\tCONTACT:      %s",t[seat-1].contact);
+             		printf("\n\n\t\t\tRESERVED");
+		}
+		else
+	{
+		printf("\n\n\t\t\tThis seat is not reserved.\n4");
+	}
+		             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+}
+void sortbyname(Tickets t[],int s)
+{
+		system("cls");
+
+	for(int  j=0;j<s;j++)
+	{
+	
+	for(int i=0;i<s-1;i++)
+	{
+		if(strcmp(t[i].name,t[i+1].name)==1)
+		{
+			Tickets temp=t[i];
+			t[i]=t[i+1];
+			t[i+1]=temp;
+		}
+	}
+}
+		             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+		     printf("\n\t\t\t\t\t NAME\t\tGENDER\t\tAGE");
+		     		             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+for(int c=0;c<s;c++)
+{
+			 printf("\n\t\t\t\t\t %s",t[c].name);
+     	     printf("\t\t %s",t[c].gender);
+             printf("\t\t%d  ",t[c].age);
+}
+    printf("\n\t\t=======================================================================================\n\n");
+
+}
+void sortbyage(Tickets t[],int s)
+{
+		system("cls");
+
+	for(int  j=0;j<s;j++)
+	{
+	
+	for(int i=0;i<s-1;i++)
+	{
+		if(t[i].age>t[i+1].age)
+		{
+			Tickets temp=t[i];
+			t[i]=t[i+1];
+			t[i+1]=temp;
+		}
+	}
+}		     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+		     printf("\n\t\tNAME\t\tEMAIL\t\t\t  DEP CITY\t\tGENDER\t\t  AGE");
+		     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+             for(int c=0;c<s;c++)
+{
+
+			 printf("\n\t\t%s",t[c].name);
+             printf("\t   %s" ,t[c].email);
+             printf("\t\t  %s" ,t[c].departurecity);
+             printf("\t\t %s",t[c].gender);
+            printf("\t\t   %d",t[c].age);
+
+}
+    printf("\n\t\t=======================================================================================\n\n");
+
+}
+void view_bus_list(bus b[],int s)
+{	
+system("cls");
+	int op;
+	for(int i=0;i<s;i++)
+	{
+		printf("\n\t\t\t[%d]%s\n",i+1,b[i].bus);
+	}
+	     printf("\n\t\t___________________________________________________________________________________\n\n");
+
+	printf("\t\t\tCHOOSE BUS:");
+	scanf("%d",&op);
+		     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+	printf("\n\t\t\tWELCOME TO %s",b[op-1].bus);
+		     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+	printf("\n\n\t\tTotal Seats: %d\n\n\t\tSeats Reaserved: %d\n\n\t\tSeats Available: %d",b[op-1].total_seats,b[op-1].seats_reser,b[op-1].seats_avail);
+	    printf("\n\t\t=======================================================================================\n\n");
+
+}
+void cancel_seat(Tickets t[],int s)
+{
+		system("cls");
+
+	char check;
+	int seat;
+    char name[100];    
+    int flg=0;
+    char nullStr[100] = {"\0"};  // using an empty string to delete the info   
+    do{
+	printf("\n\t\tEnter seat number:");
+    scanf("%d",&seat);
+    
+        if (seat>=1&&seat<=20)
+            {
+				flg=1;
+						     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+					printf("\n\n\t\tSeat Number %d booked with the name %s is cancelled succesfully. \n",seat,t[seat-1].name);
+							printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+                    strcpy(t[seat-1].name, nullStr);
+                    strcpy(t[seat-1].gender, nullStr);
+					strcpy(t[seat-1].email, nullStr);
+					strcpy(t[seat-1].Arrival_city, nullStr);
+					strcpy(t[seat-1].departurecity, nullStr);
+
+					fflush(stdin);
+					printf("\n\t\tDo you want to check whether data is deleted or not?(y/n)");
+                    scanf("%c",&check);
+if(check=='y'){
+    		display(t,20);
+			 }
+      }
+    else if(flg==0)
+     		     {
+				  printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+	printf("\n\t\tSeat Number is incorrect, please enter right one to cancel ticket:\n");
+			     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+}}while(flg!=1);
+}
+	 void edit_data(Tickets t[],int s)
+	 {
+	 		system("cls");
+
+	 	int seat;
+	 	char check;
+	 	int flag=0;
+	 		           printf("\n\t\t=======================================================================================\n\n");
+
+	  do{	  printf("\n\t\t\tEnter seat number:");
+    scanf("%d",&seat);
+	          printf("\n\t\t=======================================================================================\n\n");
+
+					 if (seat>=1&&seat<=20)
+{
+        flag=1;
+	 		fflush(stdin);
+	printf("\t\t\t>Name of the Passenger: "); 
+	gets(t[seat-1].name);
+	printf("\t\t\t>Enter Email: "); 
+	gets(t[seat-1].email);
+	printf("\t\t\t>Status (Single/Married): "); 
+	gets(t[seat-1].status);
+	printf("\t\t\t>Departure City: "); 
+	gets(t[seat-1].departurecity);
+	printf("\t\t\t>Arrival City: "); 
+	gets(t[seat-1].Arrival_city);
+	printf("\t\t\t>Age of the student:");
+	scanf(" %d",&t[seat-1].age);
+	fflush(stdin);
+	printf("\t\t\t>Gender of the student: ");
+	gets(t[seat-1].gender);
+	printf("\t\t\t>phone number of the student(11 digit): ");
+	scanf("%s",&t[seat-1].contact);
+		printf("\n\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+
+	printf("\n\n\t\t\tData Edited Succesfully!\n");
+		printf("\n\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+fflush(stdin);
+printf("\n\t\t\tDo you want to check whether data is edited or not?(y/n)");
+scanf("%c",&check);
+if(check=='y'){
+    		display(t,20);
+			 }
+}
+else if(seat>20)
+
+{
+			     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+	printf("\n\n\t\t\tThis seat is neither Reserved Nor contain any Data.\n");
+			     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+ } 
+ 
+ }while(flag!=1);
+
+}
+void booking(Tickets t[],bus b[])
+{
+	system("cls");
+	char check;
+	printf("\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+    printf("\n\t\t\t############                    Reserve Tickets                ############");
+	  printf("\n\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+	view_bus_list(b,5);
+	int tic,seat;
+	printf("\n\t\t\tNumber of Tickets you want to book? ");
+	scanf("%d",&tic);
+	int tickets=tic;
+			             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+	do{
+	for(int i=0;i<tic;i++)
+	{
+		printf("\n\t\t\tEnter seat number");
+	scanf("%d",&seat);
+	if(seat>20&&seat<=32){
+         fflush(stdin);
+		  printf("\n\t\t\t\t > Enter Name:\t\t\t");
+           gets(t[seat-1].name);
+   printf("\n");
+     printf("\n\t\t\t\t > Contact Number:\t\t");
+     scanf("%d",&t[seat-1].contact);
+     fflush(stdin);
+         printf("\n");
+    printf("\n\t\t\t\t > Email:\t\t\t");
+    gets(t[seat-1].email);
+         printf("\n");
+    printf("\n\t\t\t\t > Status:       \t\t");
+    gets(t[seat-1].status);
+         printf("\n");
+    printf("\n\t\t\t\t > Departure City:    \t\t");
+    gets(t[seat-1].departurecity);
+        printf("\n");
+    printf("\n\t\t\t\t > Gender:        \t\t");
+    gets(t[seat-1].gender);
+        printf("\n");
+     printf("\n\t\t\t\t________________________________________\n\n");
+     tic--;
+}
+else if(seat>=1&&seat<=20)
+	{            printf("\n\t\t=======================================================================================\n\n");
+
+		printf("\t\t\tThis seat is already reserved.");
+		            printf("\n\t\t=======================================================================================\n\n");
+
+	}
+		else if(seat>32)
+		{            printf("\n\t\t=======================================================================================\n\n");
+
+					printf("\t\t\tThis seat is not available in bus.");
+					            printf("\n\t\t=======================================================================================\n\n");
+
+		}		
+    }
+        }while(tic!=0);	
+        		             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+        	int total=tickets*370;
+	printf("\n\n\t\t\tThe Total Amount of %d Tickets is %d.\n",tickets,total);
+			             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+fflush(stdin);
+printf("\n\t\t\tDo you want to check the list of Reserved Seats?(y/n)");
+scanf("%c",&check);
+if(check=='y'){
+    		display(t,32);
+			 }
+}
+void timetable(bus b[],int s)
+{
+		system("cls");
+		printf("\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+    printf("\n\t\t############                         TIME TABLE OF BUSES                   ############");
+	  printf("\n\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+	         printf("\n\t\tBUSES\t\t DRIVER NAME\t BUS ID\t SEATS\t  TIMINNGS\t      ROUTE\n") ;
+		for(int i=0;i<s;i++)
+		{
+		printf("\n\t\t%s\t %s\t  %d\t  %d\t%s-%s\t%s To %s\n",b[i].bus,b[i].driver_name,b[i].bus_num,b[i].total_seats,b[i].dep_time,b[i].arr_time,b[i].dep_city,b[i].arr_city);
+}
+			          printf("\n\t\t========================================================================================\n");
+
+}
+
+void Rent_whole_Bus(bus b[],int s)
+{
+		system("cls");
+	char check;
+	printf("\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+    printf("\n\t\t\t############                    Reserve Bus                ############");
+	  printf("\n\t\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+	int bus,seat,sum=0;
+	printf("\n\t\t\tNumber of Busses you want to book? ");
+	scanf("%d",&bus);
+
+	int busses=bus;
+			             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+	for(int i=1;i<=bus;)
+	{
+			printf("\n\t\t\t     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+		  printf("\n\t\t\t\t           FOR BUS NO.%d\n",i);
+	printf("\n\t\t\t     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+	
+		int op;
+	for(int j=0;j<s;j++)
+	{
+		printf("\n\t\t\t[%d]%s\n",j+1,b[j].bus);
+	}
+	     printf("\n\t\t___________________________________________________________________________________\n\n");
+
+	printf("\t\t\tCHOOSE BUS:");
+	scanf("%d",&op);
+		     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+	printf("\n\t\t\tWELCOME TO %s",b[op-1].bus);
+		     printf("\n\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+	printf("\n\n\t\tTotal Seats: %d\n\t\tRent: %d",b[op-1].total_seats,b[op-1].bus_rent);
+	    printf("\n\t\t=======================================================================================\n\n");
+		printf("\n\t\t\t             Enter number of Passengers ");
+	scanf("%d",&b[i].tot_pass);
+	if(b[i].tot_pass>32)
+	{
+		printf("\n\t\t\t         Sorry, Bus has limit of 32 Seats Only!");
+	}
+	else if(b[i].tot_pass<=32)
+	{
+	i++;
+	sum=sum+b[op-1].bus_rent;
+	system("cls");
+	}
+     printf("\n\t\t\t\t________________________________________\n\n");
+
+}
+printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+	printf("\n\n\t\t\tThe Total Rent of %d Bus(es) is %d.\n",busses,sum);
+			             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+			
+}
+void feedback_from_pass(feedback f[])
+{system("cls");
+	
+         	printf("\n\t\t\t     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+		  printf("\n\t\t\t\t           FFEEDBACK FORM\n");
+	printf("\n\t\t\t     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");	
+	
+	 fflush(stdin);
+	 
+		  printf("\n\t\t\t\t > Enter Name:\t\t\t");
+           gets(f[0].name);
+   printf("\n");
+         printf("\n\t\t\t\t > Route From:\t\t\t");
+         gets(f[0].route_from);
+     fflush(stdin);
+         printf("\n");
+         printf("\n\t\t\t\t > Route To:\t\t\t");
+    gets(f[0].route_to);
+         printf("\n");
+    
+        printf("\n\t\t\t\t > Mobile :\t\t\t");
+    gets(f[0].mobile);
+        printf("\n");
+        char ch1,ch2,ch3,ch4;
+        printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+               printf("\n\t\t\t1 | How would you assess the Features of the System?\t\t\t\n");
+        printf("\n\t\t\t\t > Good (g)\t\t\t");
+        printf("\n\t\t\t\t > Satisfactory (s)\t\t\t");
+        printf("\n\t\t\t\t > Poor (p)\t\t\t");
+        printf("\n\t\t\t\t Answer: ");
+        scanf("%c",&ch1);
+        printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+             fflush(stdin);
+             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+          printf("\n\t\t\t2  | How would you rank Bus Reservation Management System during Journey?");
+        printf("\n\t\t\t\t > Good (g)\t\t\t");
+        printf("\n\t\t\t\t > Satisfactory (s)\t\t\t");
+        printf("\n\t\t\t\t > Poor (p)\t\t\t");
+        printf("\n\t\t\t\t Answer: ");
+        scanf("%c",&ch2);
+        printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+             fflush(stdin);
+             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+          printf("\n\t\t\t3 | How would you grade your overall experience?\t\t\t\n");
+        printf("\n\t\t\t\t > Good (g)\t\t\t");
+        printf("\n\t\t\t\t > Satisfactory (s)\t\t\t");
+        printf("\n\t\t\t\t > Poor (p)\t\t\t");
+        printf("\n\t\t\t\t Answer: ");
+        scanf("%c",&ch3);
+        printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+             fflush(stdin);
+             printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+          printf("\n\t\t\t4 | How would you assess Staff Service Behavior?\t\t\t\n");
+        printf("\n\t\t\t\t > Good (g)\t\t\t");
+        printf("\n\t\t\t\t > Satisfactory (s)\t\t\t");
+        printf("\n\t\t\t\t > Poor (p)\t\t\t");
+        printf("\n\t\t\t\t Answer: ");
+        scanf("%c",&ch4);
+printf("\n\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2\xB2");
+
+ 	printf("\n\t\t\t     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+		  printf("\n\t\t\t\t        THANKS FOR YOUR FEEDBACK!");
+	printf("\n\t\t\t     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
+	
+}
+
+void rent_per_seat(bus b[],int s)
+{
+		system("cls");
+		printf("\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+    printf("\n\t\t############                     Ticket Prices of Routes                   ############");
+	  printf("\n\t\t\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb\xdb ");
+	         printf("\n\t\tBUSES\t\t\t         ROUTE\t               \t\tSEAT PRICES\n") ;
+
+		for(int i=0;i<s;i++)
+		{
+		printf("\n\t\t%s\t\t    %s TO %s   \t\t\t%d\n",b[i].bus,b[i].dep_city,b[i].arr_city,b[i].rent_per_seat);
+}
+			          printf("\n\t\t========================================================================================\n");
+
+}
